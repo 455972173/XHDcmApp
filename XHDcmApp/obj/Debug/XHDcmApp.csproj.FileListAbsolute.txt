@@ -1,0 +1,10 @@
+E:\CODE\XinHua\C#\XHDcmApp\XHDcmApp\bin\Debug\XHDcmApp.exe.config
+E:\CODE\XinHua\C#\XHDcmApp\XHDcmApp\bin\Debug\XHDcmApp.exe
+E:\CODE\XinHua\C#\XHDcmApp\XHDcmApp\bin\Debug\XHDcmApp.pdb
+E:\CODE\XinHua\C#\XHDcmApp\XHDcmApp\obj\Debug\XHDcmApp.csprojResolveAssemblyReference.cache
+E:\CODE\XinHua\C#\XHDcmApp\XHDcmApp\obj\Debug\XHDcmApp.Form1.resources
+E:\CODE\XinHua\C#\XHDcmApp\XHDcmApp\obj\Debug\XHDcmApp.Properties.Resources.resources
+E:\CODE\XinHua\C#\XHDcmApp\XHDcmApp\obj\Debug\XHDcmApp.csproj.GenerateResource.Cache
+E:\CODE\XinHua\C#\XHDcmApp\XHDcmApp\obj\Debug\XHDcmApp.exe
+E:\CODE\XinHua\C#\XHDcmApp\XHDcmApp\obj\Debug\XHDcmApp.pdb
+E:\CODE\XinHua\C#\XHDcmApp\XHDcmApp\obj\Debug\XHDcmApp.ConfigForm.resources
