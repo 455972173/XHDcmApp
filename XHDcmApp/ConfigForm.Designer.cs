@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ServerIPtextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ServerTypecomboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DICOMFilePathtextBox = new System.Windows.Forms.TextBox();
             this.DICOMFilePathbutton = new System.Windows.Forms.Button();
-            this.ServerTypecomboBox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.ServerIPtextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.MaxConnectNumcomboBox = new System.Windows.Forms.ComboBox();
@@ -43,20 +43,20 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.AETitletextBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.PortNumtextBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.MaxPdutextBox = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.SqlFilePathbutton = new System.Windows.Forms.Button();
-            this.SqlFilePathtextBox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.PicFilePathbutton = new System.Windows.Forms.Button();
             this.PicFilePathtextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.MaxPdutextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.PortNumtextBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.AETitletextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.SqlFilePathbutton = new System.Windows.Forms.Button();
+            this.SqlFilePathtextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.Confirmbutton = new System.Windows.Forms.Button();
             this.Cancelbutton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -75,6 +75,42 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据库服务器";
+            // 
+            // ServerIPtextBox
+            // 
+            this.ServerIPtextBox.Location = new System.Drawing.Point(252, 13);
+            this.ServerIPtextBox.Name = "ServerIPtextBox";
+            this.ServerIPtextBox.Size = new System.Drawing.Size(103, 21);
+            this.ServerIPtextBox.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(217, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 12);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "IP：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "类型：";
+            // 
+            // ServerTypecomboBox
+            // 
+            this.ServerTypecomboBox.FormattingEnabled = true;
+            this.ServerTypecomboBox.Items.AddRange(new object[] {
+            "本地",
+            "远程"});
+            this.ServerTypecomboBox.Location = new System.Drawing.Point(53, 14);
+            this.ServerTypecomboBox.Name = "ServerTypecomboBox";
+            this.ServerTypecomboBox.Size = new System.Drawing.Size(120, 20);
+            this.ServerTypecomboBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -101,42 +137,6 @@
             this.DICOMFilePathbutton.Text = "...";
             this.DICOMFilePathbutton.UseVisualStyleBackColor = true;
             this.DICOMFilePathbutton.Click += new System.EventHandler(this.DICOMFilePathbutton_Click);
-            // 
-            // ServerTypecomboBox
-            // 
-            this.ServerTypecomboBox.FormattingEnabled = true;
-            this.ServerTypecomboBox.Items.AddRange(new object[] {
-            "本地",
-            "远程"});
-            this.ServerTypecomboBox.Location = new System.Drawing.Point(53, 14);
-            this.ServerTypecomboBox.Name = "ServerTypecomboBox";
-            this.ServerTypecomboBox.Size = new System.Drawing.Size(120, 20);
-            this.ServerTypecomboBox.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "类型：";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(217, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "IP：";
-            // 
-            // ServerIPtextBox
-            // 
-            this.ServerIPtextBox.Location = new System.Drawing.Point(252, 13);
-            this.ServerIPtextBox.Name = "ServerIPtextBox";
-            this.ServerIPtextBox.Size = new System.Drawing.Size(103, 21);
-            this.ServerIPtextBox.TabIndex = 4;
             // 
             // label4
             // 
@@ -224,91 +224,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "DICOM服务器";
             // 
-            // AETitletextBox
+            // checkBox2
             // 
-            this.AETitletextBox.Location = new System.Drawing.Point(66, 14);
-            this.AETitletextBox.Name = "AETitletextBox";
-            this.AETitletextBox.ReadOnly = true;
-            this.AETitletextBox.Size = new System.Drawing.Size(187, 21);
-            this.AETitletextBox.TabIndex = 8;
-            this.AETitletextBox.Text = "XHDICOM";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 17);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 12);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "AE标题：";
-            // 
-            // PortNumtextBox
-            // 
-            this.PortNumtextBox.Location = new System.Drawing.Point(66, 50);
-            this.PortNumtextBox.Name = "PortNumtextBox";
-            this.PortNumtextBox.Size = new System.Drawing.Size(103, 21);
-            this.PortNumtextBox.TabIndex = 10;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 53);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 12);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "端口号：";
-            // 
-            // MaxPdutextBox
-            // 
-            this.MaxPdutextBox.Location = new System.Drawing.Point(66, 86);
-            this.MaxPdutextBox.Name = "MaxPdutextBox";
-            this.MaxPdutextBox.Size = new System.Drawing.Size(103, 21);
-            this.MaxPdutextBox.TabIndex = 12;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 89);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 12);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "最大PDU：";
-            // 
-            // SqlFilePathbutton
-            // 
-            this.SqlFilePathbutton.Location = new System.Drawing.Point(319, 76);
-            this.SqlFilePathbutton.Name = "SqlFilePathbutton";
-            this.SqlFilePathbutton.Size = new System.Drawing.Size(32, 23);
-            this.SqlFilePathbutton.TabIndex = 15;
-            this.SqlFilePathbutton.Text = "...";
-            this.SqlFilePathbutton.UseVisualStyleBackColor = true;
-            this.SqlFilePathbutton.Click += new System.EventHandler(this.SqlFilePathbutton_Click);
-            // 
-            // SqlFilePathtextBox
-            // 
-            this.SqlFilePathtextBox.Location = new System.Drawing.Point(16, 78);
-            this.SqlFilePathtextBox.Name = "SqlFilePathtextBox";
-            this.SqlFilePathtextBox.Size = new System.Drawing.Size(285, 21);
-            this.SqlFilePathtextBox.TabIndex = 13;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 63);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(101, 12);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "数据库文件路径：";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(9, 157);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(264, 16);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "用单独的文件夹保存多层面图像文件（CT等）";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(9, 224);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(318, 16);
+            this.checkBox2.TabIndex = 17;
+            this.checkBox2.Text = "患者文件夹中DICOM文件存在时用后收到的文件将其覆盖";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // PicFilePathbutton
             // 
@@ -336,15 +260,91 @@
             this.label11.TabIndex = 15;
             this.label11.Text = "多层面图像文件的保存位置：";
             // 
-            // checkBox2
+            // checkBox1
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(9, 224);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(318, 16);
-            this.checkBox2.TabIndex = 17;
-            this.checkBox2.Text = "患者文件夹中DICOM文件存在时用后收到的文件将其覆盖";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(9, 157);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(264, 16);
+            this.checkBox1.TabIndex = 13;
+            this.checkBox1.Text = "用单独的文件夹保存多层面图像文件（CT等）";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // MaxPdutextBox
+            // 
+            this.MaxPdutextBox.Location = new System.Drawing.Point(66, 86);
+            this.MaxPdutextBox.Name = "MaxPdutextBox";
+            this.MaxPdutextBox.Size = new System.Drawing.Size(103, 21);
+            this.MaxPdutextBox.TabIndex = 12;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 89);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(59, 12);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "最大PDU：";
+            // 
+            // PortNumtextBox
+            // 
+            this.PortNumtextBox.Location = new System.Drawing.Point(66, 50);
+            this.PortNumtextBox.Name = "PortNumtextBox";
+            this.PortNumtextBox.Size = new System.Drawing.Size(103, 21);
+            this.PortNumtextBox.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 12);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "端口号：";
+            // 
+            // AETitletextBox
+            // 
+            this.AETitletextBox.Location = new System.Drawing.Point(66, 14);
+            this.AETitletextBox.Name = "AETitletextBox";
+            this.AETitletextBox.ReadOnly = true;
+            this.AETitletextBox.Size = new System.Drawing.Size(187, 21);
+            this.AETitletextBox.TabIndex = 8;
+            this.AETitletextBox.Text = "XHDICOM";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 12);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "AE标题：";
+            // 
+            // SqlFilePathbutton
+            // 
+            this.SqlFilePathbutton.Location = new System.Drawing.Point(319, 76);
+            this.SqlFilePathbutton.Name = "SqlFilePathbutton";
+            this.SqlFilePathbutton.Size = new System.Drawing.Size(32, 23);
+            this.SqlFilePathbutton.TabIndex = 15;
+            this.SqlFilePathbutton.Text = "...";
+            this.SqlFilePathbutton.UseVisualStyleBackColor = true;
+            this.SqlFilePathbutton.Click += new System.EventHandler(this.SqlFilePathbutton_Click);
+            // 
+            // SqlFilePathtextBox
+            // 
+            this.SqlFilePathtextBox.Location = new System.Drawing.Point(16, 78);
+            this.SqlFilePathtextBox.Name = "SqlFilePathtextBox";
+            this.SqlFilePathtextBox.Size = new System.Drawing.Size(285, 21);
+            this.SqlFilePathtextBox.TabIndex = 13;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 63);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(101, 12);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "数据库文件路径：";
             // 
             // Confirmbutton
             // 

@@ -15,6 +15,7 @@ namespace XHDcmApp
     public partial class ConfigForm : Form
     {
         string m_ConfigFilePath;
+        IniFile XHDcmGateSetFile;
         ConfigHead m_CurConfigHead;
         ConfigField m_CurConfig;
         /// <summary>
@@ -67,47 +68,37 @@ namespace XHDcmApp
             m_CurConfig = new ConfigField();
 
             m_ConfigFilePath = Form1.m_XHDICOMRegistData + "\\XHDcmGate.set";
-            StreamReader SR = new StreamReader(m_ConfigFilePath, false);
-            string CurFileContent = SR.ReadToEnd();
-            SR.Close();
-            string[] CurFileLines = Regex.Split(CurFileContent, "\r\n");
-            if(CurFileLines.Length >= 3)
-            {
-                for(int Cnt = 0;Cnt <= 3;Cnt++)
-                {
-                    string[] CurElement = Regex.Split(CurFileLines[Cnt], "\t");
-                    if(CurElement.Length == 4)
-                    {
-                        m_CurConfigHead.m_FileFlag = CurElement[0];
-                        m_CurConfigHead.m_Version = CurElement[1];
-                        m_CurConfigHead.m_EncryptKey = CurElement[2];
-                        m_CurConfigHead.m_SaveDateTime = CurElement[3];
-                    }
+            XHDcmGateSetFile = new IniFile(m_ConfigFilePath);
 
-                    if (CurElement.Length == 19)
-                    {
-                        ServerTypecomboBox.SelectedIndex = Convert.ToInt32(CurElement[0]);
-                        ServerIPtextBox.Text = CurElement[1];
-                        SqlFilePathtextBox.Text = CurElement[2];
-                        PortNumtextBox.Text = CurElement[6];
-                        DICOMFilePathtextBox.Text = CurElement[7];
-                        MaxPdutextBox.Text = CurElement[10];
-                        DeviceNumtextBox.Text = CurElement[14];
-                        MaxConnectNumcomboBox.SelectedIndex = Convert.ToInt32(CurElement[15]) - 1;
-                        PicFilePathtextBox.Text = CurElement[17];
-                    }
-                }
+            m_CurConfigHead.m_FileFlag = XHDcmGateSetFile.ReadString("ConfigHead", "FileFlag", "");
+            m_CurConfigHead.m_Version = XHDcmGateSetFile.ReadString("ConfigHead", "Version", "");
+            m_CurConfigHead.m_EncryptKey = XHDcmGateSetFile.ReadString("ConfigHead", "EncryptKey", "");
+            m_CurConfigHead.m_SaveDateTime = XHDcmGateSetFile.ReadString("ConfigHead", "SaveDateTime", "");
+
+            ServerTypecomboBox.SelectedIndex = Convert.ToInt32(XHDcmGateSetFile.ReadString("ConfigInfo", "ServerType", "0"));
+            ServerIPtextBox.Text = XHDcmGateSetFile.ReadString("ConfigInfo", "ServerIp", "127.0.0.1");
+            SqlFilePathtextBox.Text = XHDcmGateSetFile.ReadString("ConfigInfo", "SqlFilePath", System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+            PortNumtextBox.Text = XHDcmGateSetFile.ReadString("ConfigInfo", "ServerPort", "104");
+            DICOMFilePathtextBox.Text = XHDcmGateSetFile.ReadString("ConfigInfo", "DICOMFilePath", "");
+            MaxPdutextBox.Text = XHDcmGateSetFile.ReadString("ConfigInfo", "MaxPdu", "16384");
+            DeviceNumtextBox.Text = XHDcmGateSetFile.ReadString("ConfigInfo", "DeviceSN", "");
+            MaxConnectNumcomboBox.SelectedIndex = Convert.ToInt32(XHDcmGateSetFile.ReadString("ConfigInfo", "MaxDBConnectNum", "1")) - 1;
+            PicFilePathtextBox.Text = XHDcmGateSetFile.ReadString("ConfigInfo", "PicFilePath", "");
+            if (String.Compare(XHDcmGateSetFile.ReadString("ConfigInfo", "IsUseSingleDICOMFolder", ""), "True", true) == 0)
+            {
+                checkBox1.Checked = true;
             }
             else
             {
-                ServerTypecomboBox.SelectedIndex = 0;
-                ServerIPtextBox.Text = "127.0.0.1";
-                SqlFilePathtextBox.Text = System.AppDomain.CurrentDomain.BaseDirectory.ToString();
-                MaxConnectNumcomboBox.SelectedIndex = 0;
-                PortNumtextBox.Text = "104";
-                MaxPdutextBox.Text = "16384";
-                //DICOMFilePathtextBox.Text = "d:\\DCMFiles";
-                //PicFilePathtextBox.Text = "d:\\DCMFilesML";
+                checkBox1.Checked = false;
+            }
+            if (String.Compare(XHDcmGateSetFile.ReadString("ConfigInfo", "IsOverridePreDICOMFile", ""), "true", true) == 0)
+            {
+                checkBox2.Checked = true;
+            }
+            else
+            {
+                checkBox2.Checked = false;
             }
         }
 
@@ -153,56 +144,40 @@ namespace XHDcmApp
 
         private void Confirmbutton_Click(object sender, EventArgs e)
         {
+            XHDcmGateSetFile.WriteString("ConfigHead", "FileFlag", "XHDCMSET");
+            XHDcmGateSetFile.WriteString("ConfigHead", "Version", "1");
+            XHDcmGateSetFile.WriteString("ConfigHead", "EncryptKey", PubFunc.GetCurSeconds().ToString());
+            XHDcmGateSetFile.WriteString("ConfigHead", "SaveDateTime", DateTime.Now.ToLocalTime().ToString());
 
-            m_CurConfigHead.m_FileFlag = "XHDCMSET";
-            m_CurConfigHead.m_Version = "1";
-            m_CurConfigHead.m_EncryptKey = PubFunc.GetCurSeconds().ToString();
-            m_CurConfigHead.m_SaveDateTime = DateTime.Now.ToLocalTime().ToString();
-            string ConfigHeadStr = m_CurConfigHead.m_FileFlag + "\t" + m_CurConfigHead.m_Version + "\t" + m_CurConfigHead.m_EncryptKey + "\t" + m_CurConfigHead.m_SaveDateTime;
 
-            m_CurConfig.m_DBServerType = ServerTypecomboBox.SelectedIndex;
-            m_CurConfig.m_DBServerIp = ServerIPtextBox.Text.ToString();
-            m_CurConfig.m_DBServerFileName = SqlFilePathtextBox.Text.ToString();
-            //m_CurConfig.m_IbServerPath =;
-            //m_CurConfig.m_DBBakeFileName =;
-            m_CurConfig.m_DICOMAppEntity = DeviceNumtextBox.Text.ToString();
-            m_CurConfig.m_DICOMServerPort = PortNumtextBox.Text.ToString();
-            m_CurConfig.m_DICOMFileFolder = DICOMFilePathtextBox.Text.ToString();
-            //m_CurConfig.m_IsAutoStartDICOMServer =;
-            //m_CurConfig.m_IsAutoConnectDB =;
-            m_CurConfig.m_MaxPduLength = MaxPdutextBox.Text.ToString();
-            //m_CurConfig.m_IBServerStartDelay =;
-            //m_CurConfig.m_IsSopInstanceUid =;
+            XHDcmGateSetFile.WriteInt("ConfigInfo", "ServerType", ServerTypecomboBox.SelectedIndex);
+            XHDcmGateSetFile.WriteString("ConfigInfo", "ServerIp", ServerIPtextBox.Text.ToString());
+            XHDcmGateSetFile.WriteString("ConfigInfo", "SqlFilePath", SqlFilePathtextBox.Text.ToString());
+            XHDcmGateSetFile.WriteString("ConfigInfo", "DICOMAppEntity", DeviceNumtextBox.Text.ToString());
+            XHDcmGateSetFile.WriteString("ConfigInfo", "ServerPort", PortNumtextBox.Text.ToString());
+            XHDcmGateSetFile.WriteString("ConfigInfo", "DICOMFilePath", DICOMFilePathtextBox.Text.ToString());
+            XHDcmGateSetFile.WriteString("ConfigInfo", "MaxPdu", MaxPdutextBox.Text.ToString());
             if (checkBox2.CheckState == CheckState.Checked)
             {
-                m_CurConfig.m_IsOverridePreDICOMFile = true;
+                XHDcmGateSetFile.WriteString("ConfigInfo", "IsOverridePreDICOMFile", "True");
             }
             else
             {
-                m_CurConfig.m_IsOverridePreDICOMFile = false;
+                XHDcmGateSetFile.WriteString("ConfigInfo", "IsOverridePreDICOMFile", "False");
             }
-
-            m_CurConfig.m_DeviceSN = DeviceNumtextBox.Text.ToString();
-            m_CurConfig.m_MaxDBConnectTimes = MaxConnectNumcomboBox.SelectedIndex + 1;
+            XHDcmGateSetFile.WriteString("ConfigInfo", "DeviceSN", DeviceNumtextBox.Text.ToString());
+            XHDcmGateSetFile.WriteInt("ConfigInfo", "MaxDBConnectNum", MaxConnectNumcomboBox.SelectedIndex + 1);
             if (checkBox1.CheckState == CheckState.Checked)
             {
-                m_CurConfig.m_IsUseSingleDICOMFolder = true;
+                XHDcmGateSetFile.WriteString("ConfigInfo", "IsUseSingleDICOMFolder", "True");
             }
             else
             {
-                m_CurConfig.m_IsUseSingleDICOMFolder = false;
+                XHDcmGateSetFile.WriteString("ConfigInfo", "IsUseSingleDICOMFolder", "False");
             }
-            m_CurConfig.m_DICOMmultilayerFileFolderName = PicFilePathtextBox.Text.ToString();
-            //CurConfig.m_Reserved =;
-            string ConfigFeildStr = m_CurConfig.m_DBServerType.ToString() + "\t" + m_CurConfig.m_DBServerIp + "\t" + m_CurConfig.m_DBServerFileName + "\t\t\t" + m_CurConfig.m_DICOMAppEntity + "\t" +
-                                    m_CurConfig.m_DICOMServerPort + "\t" + m_CurConfig.m_DICOMFileFolder + "\t\t\t" + m_CurConfig.m_MaxPduLength + "\t\t\t" + m_CurConfig.m_IsOverridePreDICOMFile.ToString() + "\t" +
-                                    m_CurConfig.m_DeviceSN + "\t" + m_CurConfig.m_MaxDBConnectTimes.ToString() + "\t" + m_CurConfig.m_IsUseSingleDICOMFolder.ToString() + "\t" + m_CurConfig.m_DICOMmultilayerFileFolderName + "\t";
-            string ConfigTailStr = PubFunc.GetMD5WithString(ConfigFeildStr);
-            StreamWriter Sw = new StreamWriter(m_ConfigFilePath,false);
-            Sw.WriteLine(ConfigHeadStr);
-            Sw.WriteLine(ConfigFeildStr);
-            Sw.WriteLine(ConfigTailStr);
-            Sw.Close();
+            XHDcmGateSetFile.WriteString("ConfigInfo", "PicFilePath", PicFilePathtextBox.Text.ToString());
+
+            XHDcmGateSetFile.WriteString("FileMd5", "Value", "");
             this.Close();
         }
     }
