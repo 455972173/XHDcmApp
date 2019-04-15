@@ -29,8 +29,13 @@ namespace XHDcmApp
             RegistryKey SOFTWARE = LocalMachine.OpenSubKey("SOFTWARE", true);
             RegistryKey SHINVA = SOFTWARE.OpenSubKey("SHINVA", true);
             RegistryKey XHDICOM = SHINVA.OpenSubKey("XHDICOM", true);
-            //XHDICOM.SetValue("DcmFolderName", "E:\\ProjectTestFile");
+
+            //XHDICOM.SetValue("DcmFolderName1", "E:\\ProjectTestFile123123123", RegistryValueKind.String);
             string RegistData = XHDICOM.GetValue(name).ToString();
+
+            XHDICOM.Close();
+            SHINVA.Close();
+            SOFTWARE.Close();
             return RegistData;
         }
 
